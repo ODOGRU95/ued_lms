@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { signIn } from "@/app/auth/actions/signIn";
+import { toast } from "sonner";
 
 const formSchema = z.object({
   emailAddress: z.string().email({
@@ -26,9 +27,13 @@ const formSchema = z.object({
   }),
 });
 
-function onSubmit(values: z.infer<typeof formSchema>) {
-  signIn(values.emailAddress, values.password);
-  console.log(values);
+async function onSubmit(values: z.infer<typeof formSchema>) {
+  const result = await signIn(values.emailAddress, values.password);
+  if (result?.error) {
+    toast.error("Something went wrong");
+  } else {
+    toast.success("Successfully logged in");
+  }
 }
 
 export function LoginForm() {

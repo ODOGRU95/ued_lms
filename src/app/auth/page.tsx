@@ -1,7 +1,5 @@
 import { LoginForm } from "@/components/auth/LoginForm";
 import { SignUpForm } from "@/components/auth/SignUpForm";
-import { UserAuthForm } from "@/components/auth/userAuthForm";
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -10,12 +8,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ChevronLeft } from "lucide-react";
 import { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {

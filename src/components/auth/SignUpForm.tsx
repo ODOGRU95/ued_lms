@@ -36,7 +36,6 @@ const formSchema1 = z
 
 function onSubmit(values: z.infer<typeof formSchema1>) {
   signUp(values.emailAddress, values.password);
-  console.log(values);
 }
 
 export function SignUpForm() {

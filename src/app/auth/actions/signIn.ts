@@ -15,7 +15,7 @@ export const signIn = async (email: string, password: string) => {
   });
 
   if (error) {
-    return redirect("/login?message=Could not authenticate user");
+    return { error: "Something went wrong" };
   }
 
   return redirect("/dashboard");
