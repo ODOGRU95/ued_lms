@@ -31,7 +31,7 @@ export default function ContactForm() {
     },
   });
 
-  const onSubmit = async (data: typeof ContactFormSchema) => {
+  const onSubmit = async (data: TContactFormSchema) => {
     const { name, email, subject, message } = data;
     await submitToSupabase(name, email, subject, message);
   };
