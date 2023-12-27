@@ -33,7 +33,7 @@ export default async function Dashboard() {
         <div className="text-red-400 text-6xl">{user?.email}</div>
         <div className="mt-8 py-2 px-3 flex no-underline bg-btn-background hover:bg-btn-background-hover border rounded-lg">
           <form action={signOutFnc}>
-            <button className="flex flex-row items-center ">Logout</button>
+            <button className="flex flex-row items-center ">Sign out</button>
           </form>
           <ChevronRight />
         </div>

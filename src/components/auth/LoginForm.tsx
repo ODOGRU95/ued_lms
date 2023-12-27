@@ -30,7 +30,7 @@ const formSchema = z.object({
 async function onSubmit(values: z.infer<typeof formSchema>) {
   const result = await signIn(values.emailAddress, values.password);
   if (result?.error) {
-    toast.error("Something went wrong");
+    toast.error("Make sure your email and password are correct");
   } else {
     toast.success("Successfully logged in");
   }
@@ -61,6 +61,7 @@ export function LoginForm() {
                   type="email"
                   autoCapitalize="none"
                   autoCorrect="off"
+                  autoFocus
                   {...field}
                 />
               </FormControl>
@@ -89,7 +90,7 @@ export function LoginForm() {
         />
         <Button
           type="submit"
-          className="bg-neutral-700 hover:bg-pink-500 w-full mt-2"
+          className="bg-neutral-700 hover:bg-pink-500 w-full mt-2 transition-all"
         >
           Sign In
         </Button>

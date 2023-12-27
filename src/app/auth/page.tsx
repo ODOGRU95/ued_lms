@@ -24,7 +24,7 @@ export default function Login() {
       <div>
         <Link
           href="/"
-          className="absolute left-8 top-8 py-2 pr-2 no-underline bg-btn-background hover:bg-neutral-700/70 flex items-center group text-sm border rounded-lg"
+          className="absolute left-8 top-20 py-2 pr-2 no-underline bg-btn-background hover:bg-neutral-700/70 flex items-center group text-sm border rounded-lg"
         >
           <div className="flex flex-row items-center">
             <ChevronLeft />
@@ -52,14 +52,14 @@ export default function Login() {
                   By clicking continue, you agree to our{" "}
                   <Link
                     href="/terms"
-                    className="underline underline-offset-4 text-neutral-300 font-bold hover:text-pink-500"
+                    className="underline underline-offset-4 text-neutral-300 font-bold hover:text-pink-500 transition-all"
                   >
                     Terms of Service
                   </Link>{" "}
                   and{" "}
                   <Link
                     href="/privacy"
-                    className="underline underline-offset-4 text-neutral-300 font-bold hover:text-pink-500"
+                    className="underline underline-offset-4 text-neutral-300 font-bold hover:text-pink-500 transition-all"
                   >
                     Privacy Policy
                   </Link>

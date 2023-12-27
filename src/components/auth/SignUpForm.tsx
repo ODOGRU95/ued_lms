@@ -65,6 +65,7 @@ export function SignUpForm() {
                     type="email"
                     autoCapitalize="none"
                     autoCorrect="off"
+                    autoFocus
                     {...field}
                   />
                 </FormControl>
@@ -114,7 +115,7 @@ export function SignUpForm() {
           />
           <Button
             type="submit"
-            className="bg-neutral-700 hover:bg-pink-500 w-full mt-2"
+            className="bg-neutral-700 hover:bg-pink-500 transition-all w-full mt-2"
           >
             Sign Up
           </Button>
