@@ -16,9 +16,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { ContactFormSchema, TContactFormSchema } from "@/lib/types";
 import { useForm } from "react-hook-form";
 import { submitToSupabase } from "./component/SubmitForm";
+import { toast } from "sonner";
 
 export default function ContactForm() {
   const {
+    register,
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<TContactFormSchema>({
@@ -31,13 +33,22 @@ export default function ContactForm() {
     },
   });
 
-  const onSubmit = async (data: TContactFormSchema) => {
-    const { name, email, subject, message } = data;
-    await submitToSupabase(name, email, subject, message);
-  };
+  async function onSubmit(data: TContactFormSchema) {
+    const result = await submitToSupabase(
+      data.name,
+      data.email,
+      data.subject,
+      data.message
+    );
+    if (result?.error) {
+      toast.error("Data submission failed");
+    } else {
+      toast.success("Data submitte succesfully");
+    }
+  }
 
   return (
-    <main className="p-10 space-y-5  ">
+    <main className="p-10 space-y-5">
       <Card className="text-neutral-200 rounded-md bg-neutral-900 border-none w-full ">
         <CardHeader>
           <CardTitle className="text-5xl font-bold flex items-center justify-center">
@@ -51,26 +62,31 @@ export default function ContactForm() {
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="name">Ad</Label>
-              <Input id="name" placeholder="Adınız..." />
+              <Input id="name" placeholder="Adınız..." className="text-black" />
             </div>
             <div className="space-y-2">
               <Label htmlFor="email">E-posta</Label>
               <Input
-                id="email"
+                {...register("email")}
                 placeholder="E-postanızı yazınız..."
                 type="email"
+                className="text-black"
               />
             </div>
           </div>
           <div className="space-y-2">
             <Label htmlFor="subject">Konu</Label>
-            <Input id="subject" placeholder="Konuyu yazınız..." />
+            <Input
+              {...register("subject")}
+              placeholder="Konuyu yazınız..."
+              className="text-black"
+            />
           </div>
           <div className="space-y-2">
             <Label htmlFor="message">Mesaj</Label>
             <Textarea
-              className="min-h-[100px]"
-              id="message"
+              className="min-h-[100px] text-black"
+              {...register("message")}
               placeholder="Mesajınızı yazınız..."
             />
           </div>
@@ -81,6 +97,7 @@ export default function ContactForm() {
             type="submit"
             variant={"secondary"}
             className="w-full"
+            disabled={isSubmitting}
           >
             Gönder
           </Button>

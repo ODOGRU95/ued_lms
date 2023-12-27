@@ -1,4 +1,4 @@
-import FAQ from "@/components/component/faq";
+import FAQ from "@/components/component/FAQ";
 import ContactForm from "@/components/ContactForm";
 import Image from "next/image";
 
