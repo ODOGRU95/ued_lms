@@ -26,9 +26,9 @@ export default async function AuthButton() {
         <Button
           variant={"secondary"}
           size={"lg"}
-          className="text-lg gap-2 py-2 px-4 rounded-md transition-all "
+          className="text-sm gap-2 py-2 px-4 rounded-md transition-all "
         >
-          Sign out <LogOut />
+          Sign out <LogOut className="h-4 w-4" />
         </Button>
       </form>
     </div>

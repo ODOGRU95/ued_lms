@@ -7,7 +7,7 @@ export const ContactFormSchema = z.object({
     .email()
     .min(2, { message: "Uygun bir e-posta adresi giriniz." }),
   subject: z.string() || null,
-  message: z.string().min(20, "Mesaj en az 20 karakter içermelidir."),
+  message: z.string().min(5, "Mesaj en az 5 karakter içermelidir."),
 });
 
 export type TContactFormSchema = z.infer<typeof ContactFormSchema>;

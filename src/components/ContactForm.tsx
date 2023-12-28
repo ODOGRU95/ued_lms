@@ -1,29 +1,23 @@
 "use client";
-
+import { Button, buttonVariants } from "@/components/ui/button";
 import {
-  CardTitle,
-  CardDescription,
-  CardHeader,
-  CardContent,
-  CardFooter,
-  Card,
-} from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { ContactFormSchema, TContactFormSchema } from "@/lib/types";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { submitToSupabase } from "./component/SubmitForm";
 import { toast } from "sonner";
+import { submitToSupabase } from "../app/auth/actions/SubmitForm";
 
 export default function ContactForm() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitting },
-  } = useForm<TContactFormSchema>({
+  const form = useForm<TContactFormSchema>({
     resolver: zodResolver(ContactFormSchema),
     defaultValues: {
       name: "",
@@ -43,66 +37,108 @@ export default function ContactForm() {
     if (result?.error) {
       toast.error("Data submission failed");
     } else {
-      toast.success("Data submitte succesfully");
+      toast.success("Data submitted succesfully");
+      console.log(data);
     }
   }
-
   return (
-    <main className="p-10 space-y-5">
-      <Card className="text-neutral-200 rounded-md bg-neutral-900 border-none w-full ">
-        <CardHeader>
-          <CardTitle className="text-5xl font-bold flex items-center justify-center">
-            İletişim
-          </CardTitle>
-          <CardDescription className="text-gray-500 dark:text-gray-400">
-            Aşağıda bulunan formu doldurarak bizimle iletişime geçebilirsiniz.
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="name">Ad</Label>
-              <Input id="name" placeholder="Adınız..." className="text-black" />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="email">E-posta</Label>
-              <Input
-                {...register("email")}
-                placeholder="E-postanızı yazınız..."
-                type="email"
-                className="text-black"
-              />
-            </div>
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="subject">Konu</Label>
-            <Input
-              {...register("subject")}
-              placeholder="Konuyu yazınız..."
-              className="text-black"
-            />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="message">Mesaj</Label>
-            <Textarea
-              className="min-h-[100px] text-black"
-              {...register("message")}
-              placeholder="Mesajınızı yazınız..."
-            />
-          </div>
-        </CardContent>
-        <CardFooter>
+    <>
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="grid gap-4 mt-10"
+        >
+          <FormField
+            control={form.control}
+            name="name"
+            render={({ field }) => (
+              <FormItem className="grid gap-2">
+                <FormLabel className="text-neutral-200">Full name</FormLabel>
+                <FormControl>
+                  <Input
+                    className="focus:ring-pink-500"
+                    placeholder="John Doe"
+                    type="text"
+                    autoCapitalize="none"
+                    autoCorrect="off"
+                    autoFocus
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem className="grid gap-2">
+                <FormLabel className="text-neutral-200">Email</FormLabel>
+                <FormControl>
+                  <Input
+                    className=""
+                    type="email"
+                    placeholder="example@mail.com"
+                    autoCapitalize="none"
+                    autoCorrect="off"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="subject"
+            render={({ field }) => (
+              <FormItem className="grid gap-2">
+                <FormLabel className="text-neutral-200">Subject</FormLabel>
+                <FormControl>
+                  <Input
+                    className=""
+                    type="text"
+                    placeholder="Development"
+                    autoCapitalize="none"
+                    autoCorrect="off"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="message"
+            render={({ field }) => (
+              <FormItem className="grid gap-2">
+                <FormLabel className="text-neutral-200">Message</FormLabel>
+                <FormControl>
+                  <Textarea
+                    className=""
+                    placeholder="Type your message here..."
+                    autoCapitalize="none"
+                    autoCorrect="off"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
           <Button
-            onSubmit={handleSubmit(onSubmit)}
             type="submit"
-            variant={"secondary"}
-            className="w-full"
-            disabled={isSubmitting}
+            className={buttonVariants({
+              variant: "secondary",
+              className: "w-full mt-2 transition-all",
+            })}
           >
-            Gönder
+            Submit
           </Button>
-        </CardFooter>
-      </Card>
-    </main>
+        </form>
+      </Form>
+    </>
   );
 }
