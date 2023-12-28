@@ -37,7 +37,7 @@ export default async function AuthButton() {
       href="/auth"
       className=" py-2 px-3 flex items-center rounded-md transition-all"
     >
-      <Button variant={"secondary"} size={"lg"} className="text-lg">
+      <Button variant={"default"} size={"lg"} className="text-lg">
         Sign In
         <ChevronRight />
       </Button>

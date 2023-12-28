@@ -57,10 +57,10 @@ export function SignUpForm() {
             name="emailAddress"
             render={({ field }) => (
               <FormItem className="grid gap-2">
-                <FormLabel className="text-neutral-200">Email</FormLabel>
+                <FormLabel className="">Email</FormLabel>
                 <FormControl>
                   <Input
-                    className="focus:ring-pink-500"
+                    className=""
                     placeholder="name@example.com"
                     type="email"
                     autoCapitalize="none"
@@ -78,7 +78,7 @@ export function SignUpForm() {
             name="password"
             render={({ field }) => (
               <FormItem className="grid gap-2">
-                <FormLabel className="text-neutral-200">Password</FormLabel>
+                <FormLabel className="">Password</FormLabel>
                 <FormControl>
                   <Input
                     className=""
@@ -97,9 +97,7 @@ export function SignUpForm() {
             name="passwordConfirm"
             render={({ field }) => (
               <FormItem className="grid gap-2">
-                <FormLabel className="text-neutral-200">
-                  Confirm Password
-                </FormLabel>
+                <FormLabel className="">Confirm Password</FormLabel>
                 <FormControl>
                   <Input
                     className=""
@@ -113,10 +111,7 @@ export function SignUpForm() {
               </FormItem>
             )}
           />
-          <Button
-            type="submit"
-            className="bg-neutral-700 hover:bg-pink-500 transition-all w-full mt-2"
-          >
+          <Button type="submit" className="w-full mt-2">
             Sign Up
           </Button>
         </form>

@@ -53,10 +53,10 @@ export function LoginForm() {
           name="emailAddress"
           render={({ field }) => (
             <FormItem className="grid gap-2">
-              <FormLabel className="text-neutral-200">Email</FormLabel>
+              <FormLabel className="">Email</FormLabel>
               <FormControl>
                 <Input
-                  className="focus:ring-pink-500"
+                  className=""
                   placeholder="name@example.com"
                   type="email"
                   autoCapitalize="none"
@@ -74,7 +74,7 @@ export function LoginForm() {
           name="password"
           render={({ field }) => (
             <FormItem className="grid gap-2">
-              <FormLabel className="text-neutral-200">Password</FormLabel>
+              <FormLabel className="">Password</FormLabel>
               <FormControl>
                 <Input
                   className=""
@@ -88,10 +88,7 @@ export function LoginForm() {
             </FormItem>
           )}
         />
-        <Button
-          type="submit"
-          className="bg-neutral-700 hover:bg-pink-500 w-full mt-2 transition-all"
-        >
+        <Button type="submit" className="w-full mt-2">
           Sign In
         </Button>
       </form>

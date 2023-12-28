@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/sonner";
 import Navbar from "@/components/Navbar";
 import MobileNavbar from "@/components/MobileNavbar";
 import Footer from "@/components/Footer";
+import { ThemeProvider } from "@/components/theme/ThemeProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,12 +22,19 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={cn(inter.className, "text-neutral-200 bg-neutral-900")}>
-        <Navbar />
-        <MobileNavbar />
-        {children}
-        <Toaster position="top-center" />
-        <Footer />
+      <body className={cn(inter.className)}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Navbar />
+          <MobileNavbar />
+          {children}
+          <Toaster richColors position="top-center" />
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

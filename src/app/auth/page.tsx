@@ -24,7 +24,7 @@ export default function Login() {
       <div>
         <Link
           href="/"
-          className="absolute left-8 top-20 py-2 pr-2 no-underline bg-btn-background hover:bg-neutral-700/70 flex items-center group text-sm border rounded-lg"
+          className="absolute left-8 top-24 py-2 pr-2 no-underline flex items-center group text-sm border rounded-lg"
         >
           <div className="flex flex-row items-center">
             <ChevronLeft />
@@ -32,15 +32,15 @@ export default function Login() {
           </div>
         </Link>
         <Tabs defaultValue="signIn" className="max-w-lg">
-          <TabsList className="grid grid-cols-2 bg-neutral-800 text-neutral-200">
+          <TabsList className="grid grid-cols-2">
             <TabsTrigger value="signIn">Sign In</TabsTrigger>
             <TabsTrigger value="signUp">Sign Up</TabsTrigger>
           </TabsList>
           <TabsContent value="signIn" className="">
-            <Card className="bg-neutral-800">
+            <Card className="">
               <CardHeader>
-                <CardTitle className="text-neutral-200">Sign In</CardTitle>
-                <CardDescription className="text-neutral-400">
+                <CardTitle className="">Sign In</CardTitle>
+                <CardDescription className="">
                   Enter your email and password below to login your account.
                 </CardDescription>
               </CardHeader>
@@ -48,18 +48,18 @@ export default function Login() {
                 <LoginForm />
               </CardContent>
               <CardFooter>
-                <p className="px-8 text-center text-sm text-neutral-400">
+                <p className="px-8 text-center text-sm ">
                   By clicking continue, you agree to our{" "}
                   <Link
                     href="/terms"
-                    className="underline underline-offset-4 text-neutral-300 font-bold hover:text-pink-500 transition-all"
+                    className="underline underline-offset-4 font-bold"
                   >
                     Terms of Service
                   </Link>{" "}
                   and{" "}
                   <Link
                     href="/privacy"
-                    className="underline underline-offset-4 text-neutral-300 font-bold hover:text-pink-500 transition-all"
+                    className="underline underline-offset-4 font-bold"
                   >
                     Privacy Policy
                   </Link>
@@ -69,10 +69,10 @@ export default function Login() {
             </Card>
           </TabsContent>
           <TabsContent value="signUp">
-            <Card className="bg-neutral-800">
+            <Card className="">
               <CardHeader>
-                <CardTitle className="text-neutral-200">Sign Up</CardTitle>
-                <CardDescription className="text-neutral-400">
+                <CardTitle className="">Sign Up</CardTitle>
+                <CardDescription className="">
                   Enter your email and password below to create your account.
                 </CardDescription>
               </CardHeader>
@@ -81,18 +81,18 @@ export default function Login() {
               </CardContent>
 
               <CardFooter>
-                <p className="px-8 text-center text-sm text-neutral-400">
+                <p className="px-8 text-center text-sm ">
                   By clicking continue, you agree to our{" "}
                   <Link
                     href="/terms"
-                    className="underline underline-offset-4 text-neutral-300 font-bold hover:text-pink-500"
+                    className="underline underline-offset-4 font-bold"
                   >
                     Terms of Service
                   </Link>{" "}
                   and{" "}
                   <Link
                     href="/privacy"
-                    className="underline underline-offset-4 text-neutral-300 font-bold hover:text-pink-500"
+                    className="underline underline-offset-4 font-bold"
                   >
                     Privacy Policy
                   </Link>

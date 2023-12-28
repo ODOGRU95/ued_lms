@@ -30,7 +30,7 @@ export default async function Dashboard() {
     <>
       <div className="min-h-screen flex flex-col justify-center items-center font-bold ">
         <span className="text-6xl">Welcome to dashboard</span>
-        <div className="text-red-400 text-6xl">{user?.email}</div>
+        <div className="text-primary text-6xl">{user?.email}</div>
         <div className="mt-8 py-2 px-3 flex">
           <form action={signOutFnc}>
             <AuthButton />

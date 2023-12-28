@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Logo from "./Logo";
 import AuthButton from "./auth/AuthButton";
+import { ModeToggle } from "./theme/ThemeSwitcher";
 
 export default function Navbar() {
   return (
@@ -17,7 +18,10 @@ export default function Navbar() {
                 Pricing
               </Link>
             </div>
-            <AuthButton />
+            <div className="flex items-center justify-center space-x-5">
+              <AuthButton />
+              <ModeToggle />
+            </div>
           </div>
         </div>
       </nav>
