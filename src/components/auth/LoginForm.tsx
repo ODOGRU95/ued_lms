@@ -4,19 +4,20 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
+import { signIn } from "@/app/auth/actions/sign-in";
 import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { signIn } from "@/app/auth/actions/signIn";
 import { toast } from "sonner";
+import GithubOAuth from "./GithubOAuthForm";
+import GoogleOAuth from "./GoogleOAuthForm";
 
 const formSchema = z.object({
   emailAddress: z.string().email({
@@ -52,7 +53,7 @@ export function LoginForm() {
           control={form.control}
           name="emailAddress"
           render={({ field }) => (
-            <FormItem className="grid gap-2">
+            <FormItem className="grid gap-4">
               <FormLabel className="">Email</FormLabel>
               <FormControl>
                 <Input
@@ -91,7 +92,14 @@ export function LoginForm() {
         <Button type="submit" className="w-full mt-2">
           Sign In
         </Button>
+        <div className="mx-auto flex w-full items-center justify-evenly before:mr-4 before:block before:h-px before:flex-grow before:bg-stone-400 after:ml-4 after:block after:h-px after:flex-grow after:bg-stone-400">
+          veya
+        </div>
       </form>
+      <div className="flex flex-row justify-center space-x-2">
+        <GoogleOAuth />
+        <GithubOAuth />
+      </div>
     </Form>
   );
 }

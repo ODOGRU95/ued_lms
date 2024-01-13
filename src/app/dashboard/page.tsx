@@ -2,7 +2,7 @@ import { createClient } from "@/lib/supabase/server";
 import { ChevronRight } from "lucide-react";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { signOut } from "../auth/actions/signOut";
+import { signOut } from "../auth/actions/sign-out";
 import AuthButton from "@/components/auth/AuthButton";
 
 const signOutFnc = async () => {

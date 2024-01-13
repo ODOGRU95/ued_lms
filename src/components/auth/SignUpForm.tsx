@@ -14,7 +14,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { signUp } from "@/app/auth/actions/signUp";
+import { signUp } from "@/app/auth/actions/sign-up";
 import { Toaster } from "../ui/sonner";
 
 const formSchema1 = z

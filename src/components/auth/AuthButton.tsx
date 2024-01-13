@@ -2,7 +2,7 @@ import { createClient } from "@/lib/supabase/server";
 import Link from "next/link";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { signOut } from "@/app/auth/actions/signOut";
+import { signOut } from "@/app/auth/actions/sign-out";
 import { ChevronRight, LogOut } from "lucide-react";
 import { Button } from "../ui/button";
 
@@ -24,9 +24,9 @@ export default async function AuthButton() {
     <div className="flex items-center gap-4">
       <form action={signOutFnc}>
         <Button
-          variant={"secondary"}
+          variant={"outline"}
           size={"lg"}
-          className="text-sm gap-2 py-2 px-4 rounded-md transition-all "
+          className="text-sm gap-2 py-2 px-4 hover:text-muted-foreground rounded-md transition-all "
         >
           Sign out <LogOut className="h-4 w-4" />
         </Button>
@@ -37,7 +37,7 @@ export default async function AuthButton() {
       href="/auth"
       className=" py-2 px-3 flex items-center rounded-md transition-all"
     >
-      <Button variant={"default"} size={"lg"} className="text-lg">
+      <Button variant={"default"} size={"sm"} className="text-sm">
         Sign In
         <ChevronRight />
       </Button>

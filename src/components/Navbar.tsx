@@ -6,8 +6,8 @@ import { ModeToggle } from "./theme/ThemeSwitcher";
 export default function Navbar() {
   return (
     <>
-      <nav className="sticky text-xl inset-x-0 top-0 z-30 w-full px-4 shadow-xl backdrop-blur-lg transition-all duration-500 hidden md:block">
-        <div className="max-w-7xl mx-auto p-3 sm:px-6 lg:px-8 ">
+      <nav className="max-w-5xl sticky text-xl inset-x-0 top-3 z-30 w-full shadow-xl backdrop-blur-lg transition-all duration-500 rounded-full mx-auto p-3 sm:px-6 lg:px-8 ">
+        <div className="hidden md:block">
           <div className="flex w-full items-center justify-between ">
             <Logo />
             <div className="space-x-5">
@@ -19,8 +19,8 @@ export default function Navbar() {
               </Link>
             </div>
             <div className="flex items-center justify-center space-x-5">
-              <AuthButton />
               <ModeToggle />
+              <AuthButton />
             </div>
           </div>
         </div>
