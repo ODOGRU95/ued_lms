@@ -1,5 +1,5 @@
 import React from "react";
 
-export default function Pricing() {
+export default function PricingPage() {
   return <div>Pricing Page</div>;
 }

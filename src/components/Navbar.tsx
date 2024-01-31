@@ -18,7 +18,7 @@ export default function Navbar() {
                 Pricing
               </Link>
             </div>
-            <div className="flex items-center justify-center space-x-5">
+            <div className="flex items-center justify-center gap-1">
               <ModeToggle />
               <AuthButton />
             </div>

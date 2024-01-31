@@ -14,7 +14,7 @@ import { ContactFormSchema, TContactFormSchema } from "@/lib/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { submitToSupabase } from "../app/auth/actions/SubmitForm";
+import { submitToSupabase } from "../app/auth/actions/SubmitProfile";
 
 export default function ContactForm() {
   const form = useForm<TContactFormSchema>({

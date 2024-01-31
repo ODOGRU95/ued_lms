@@ -20,13 +20,18 @@ export default function GoogleOAuth() {
   };
 
   return (
-    <Button variant={"ghost"} onClick={loginWithGoogle}>
+    <Button
+      variant={"ghost"}
+      onClick={loginWithGoogle}
+      className="border border-zinc-700 flex items-center justify-center gap-1"
+    >
       <Image
         alt="google-logo"
         src={"/google-logo.svg"}
         width={40}
         height={40}
       />
+      Sign in with Google
     </Button>
   );
 }

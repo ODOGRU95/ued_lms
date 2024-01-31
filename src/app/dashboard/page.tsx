@@ -1,9 +1,8 @@
+import AuthButton from "@/components/auth/AuthButton";
 import { createClient } from "@/lib/supabase/server";
-import { ChevronRight } from "lucide-react";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { signOut } from "../auth/actions/sign-out";
-import AuthButton from "@/components/auth/AuthButton";
 
 const signOutFnc = async () => {
   "use server";
@@ -11,7 +10,7 @@ const signOutFnc = async () => {
   return redirect("/auth");
 };
 
-export default async function Dashboard() {
+export default async function DashboardPage() {
   const cookieStore = cookies();
   const supabase = createClient(cookieStore);
 
@@ -32,9 +31,7 @@ export default async function Dashboard() {
         <span className="text-6xl">Welcome to dashboard</span>
         <div className="text-primary text-6xl">{user?.email}</div>
         <div className="mt-8 py-2 px-3 flex">
-          <form action={signOutFnc}>
-            <AuthButton />
-          </form>
+          <form action={signOutFnc}></form>
         </div>
       </div>
     </>

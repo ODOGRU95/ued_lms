@@ -1,3 +1,4 @@
+import Logo from "@/components/Logo";
 import { LoginForm } from "@/components/auth/LoginForm";
 import { SignUpForm } from "@/components/auth/SignUpForm";
 import {
@@ -11,6 +12,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ChevronLeft } from "lucide-react";
 import { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -38,10 +40,17 @@ export default function Login() {
           </TabsList>
           <TabsContent value="signIn" className="">
             <Card className="">
-              <CardHeader>
-                <CardTitle className="">Sign In</CardTitle>
+              <CardHeader className="flex items-center justify-center">
+                <Image
+                  src={"/logoipsum-223.svg"}
+                  alt="logo"
+                  width={50}
+                  height={50}
+                  className="pb-3"
+                />
+                <CardTitle>Welcome Back</CardTitle>
                 <CardDescription className="">
-                  Enter your email and password below to login your account.
+                  Please enter your details to login
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-2">
@@ -70,10 +79,17 @@ export default function Login() {
           </TabsContent>
           <TabsContent value="signUp">
             <Card className="">
-              <CardHeader>
-                <CardTitle className="">Sign Up</CardTitle>
+              <CardHeader className="flex items-center justify-center">
+                <Image
+                  src={"/logoipsum-223.svg"}
+                  alt="logo"
+                  width={50}
+                  height={50}
+                  className="pb-3"
+                />
+                <CardTitle>Welcome Back</CardTitle>
                 <CardDescription className="">
-                  Enter your email and password below to create your account.
+                  Please enter your details to sign up
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-2">
@@ -96,7 +112,6 @@ export default function Login() {
                   >
                     Privacy Policy
                   </Link>
-                  .
                 </p>
               </CardFooter>
             </Card>

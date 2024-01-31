@@ -7,10 +7,10 @@ export default function Footer() {
     //   <h1> © Geyikli Inc. 2023</h1>
     //   <h1>Instagram</h1>
     //   </div>
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-4 pt-10 ">
-      <div className="flex w-full items-center justify-between ">
+    <div className=" px-4 sm:px-6 lg:px-8 pb-4 pt-10 ">
+      <div className="flex flex-row justify-between">
         <h1> © Geyikli Inc. 2023</h1>
-        <div className="space-x-5 text-md font-extralight">
+        <div className=" text-md font-extralight space-x-5">
           <Link href={"/dashboard"}>Instagram</Link>
           <Link href={"/pricing"}>E-posta</Link>
         </div>

@@ -7,6 +7,7 @@ import Navbar from "@/components/Navbar";
 import MobileNavbar from "@/components/MobileNavbar";
 import Footer from "@/components/Footer";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
+import SwitchNavBar from "@/components/SwitchNavBar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={cn(inter.className)}>
         <ThemeProvider
           attribute="class"
@@ -29,11 +30,14 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Navbar />
-          <MobileNavbar />
-          {children}
+          <div className="flex flex-col min-h-screen max-h-screen justify-between">
+            {/* <MobileNavbar /> */}
+            {/* <Navbar /> */}
+            <SwitchNavBar />
+            {children}
+            <Footer />
+          </div>
           <Toaster richColors position="top-center" />
-          <Footer />
         </ThemeProvider>
       </body>
     </html>

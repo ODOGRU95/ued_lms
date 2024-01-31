@@ -20,8 +20,13 @@ export default function GithubOAuth() {
   };
 
   return (
-    <Button variant={"ghost"} onClick={loginWithGithub}>
+    <Button
+      variant={"ghost"}
+      onClick={loginWithGithub}
+      className="border border-zinc-700 flex items-center justify-center gap-1"
+    >
       <Github />
+      Sign in with Github
     </Button>
   );
 }

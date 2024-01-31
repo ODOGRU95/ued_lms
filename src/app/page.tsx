@@ -26,7 +26,7 @@ export default function Home() {
           <div className="mt-20 flex flex-col md:flex-row gap-5 items-center md:space-x-20 w-[75dvh]">
             <Image
               alt="yapay zeka"
-              src={"/yapay-zeka.jpg"}
+              src={"/yapay-zeka-2.jpg"}
               width={450}
               height={400}
               className="rounded-md border-l-2 border-primary p-1"
@@ -55,7 +55,7 @@ export default function Home() {
             </div>
             <Image
               alt="yapay zeka"
-              src={"/robot-ve-insan.jpg"}
+              src={"/robot-ve-insan-2.jpg"}
               width={450}
               height={400}
               className="rounded-md  border-r-2 border-primary p-1"
