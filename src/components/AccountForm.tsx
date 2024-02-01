@@ -3,7 +3,7 @@
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import { Input } from "./ui/input";
-import { submitToSupabase } from "@/app/auth/actions/SubmitProfile";
+import { submitToSupabase } from "@/app/auth/actions/submit-profile";
 
 import {
   Accordion,
@@ -50,13 +50,17 @@ import { IoSchoolOutline } from "react-icons/io5";
 import { AiOutlineMail } from "react-icons/ai";
 import { GiFeather } from "react-icons/gi";
 import { IoIosPerson } from "react-icons/io";
+import { FaUserSecret } from "react-icons/fa6";
 
 async function onSubmit(data: TAccountSetupFormSchema) {
   const result = await submitToSupabase(
     data.fullname,
+    data.nickname,
     data.birthday,
     data.school,
-    data.email
+    data.email,
+    data.grade,
+    data.avatar_url
   );
   if (result?.error) {
     toast.error("Data submission failed");
@@ -71,9 +75,11 @@ export function AccountForm() {
     resolver: zodResolver(AccountSetupFormSchema),
     defaultValues: {
       fullname: "",
+      nickname: "",
       birthday: "",
       school: "",
       email: "",
+      avatar_url: "",
     },
   });
 
@@ -144,13 +150,41 @@ export function AccountForm() {
                                     className="h-8"
                                     placeholder=""
                                     type="text"
+                                    autoFocus
                                     autoCapitalize=""
                                     autoCorrect="off"
                                     {...field}
                                   />
                                 </div>
                               </FormControl>
-                              <FormMessage />
+                              <FormMessage className="mt-2" />
+                            </FormItem>
+                          )}
+                        />
+                        <FormField
+                          control={form.control}
+                          name="nickname"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormControl>
+                                <div className="flex flex-row items-center justify-between gap-5">
+                                  <div className="flex flex-row items-center gap-3 w-full">
+                                    <FaUserSecret className="h-5 w-5 text-gray-400" />
+                                    <p className="font-normal text-foreground/70">
+                                      Nickname
+                                    </p>
+                                  </div>
+                                  <Input
+                                    className="h-8"
+                                    placeholder=""
+                                    type="text"
+                                    autoCapitalize=""
+                                    autoCorrect="off"
+                                    {...field}
+                                  />
+                                </div>
+                              </FormControl>
+                              <FormMessage className="mt-2" />
                             </FormItem>
                           )}
                         />
@@ -177,7 +211,7 @@ export function AccountForm() {
                                   />
                                 </div>
                               </FormControl>
-                              <FormMessage />
+                              <FormMessage className="mt-2" />
                             </FormItem>
                           )}
                         />
@@ -204,7 +238,34 @@ export function AccountForm() {
                                   />
                                 </div>
                               </FormControl>
-                              <FormMessage />
+                              <FormMessage className="mt-2" />
+                            </FormItem>
+                          )}
+                        />
+                        <FormField
+                          control={form.control}
+                          name="grade"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormControl>
+                                <div className="flex flex-row w-full items-center justify-start gap-5">
+                                  <div className="flex flex-row items-center gap-3 w-full">
+                                    <GraduationCap className="h-5 w-5 text-gray-400" />
+                                    <p className="font-normal text-foreground/70">
+                                      Grade
+                                    </p>
+                                  </div>
+                                  <Input
+                                    className="h-8"
+                                    placeholder=""
+                                    type="text"
+                                    autoCapitalize=""
+                                    autoCorrect="off"
+                                    {...field}
+                                  />
+                                </div>
+                              </FormControl>
+                              <FormMessage className="mt-2" />
                             </FormItem>
                           )}
                         />
@@ -231,7 +292,34 @@ export function AccountForm() {
                                   />
                                 </div>
                               </FormControl>
-                              <FormMessage />
+                              <FormMessage className="mt-2" />
+                            </FormItem>
+                          )}
+                        />
+                        <FormField
+                          control={form.control}
+                          name="avatar_url"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormControl>
+                                <div className="flex flex-row w-full items-center justify-start gap-5">
+                                  <div className="flex flex-row items-center gap-3 w-full">
+                                    <Mail className="h-5 w-5 text-gray-400" />
+                                    <p className="font-normal text-gray-400">
+                                      Avatar Url
+                                    </p>
+                                  </div>
+                                  <Input
+                                    className="h-8"
+                                    placeholder=""
+                                    type="url"
+                                    autoCapitalize=""
+                                    autoCorrect="off"
+                                    {...field}
+                                  />
+                                </div>
+                              </FormControl>
+                              <FormMessage className="mt-2" />
                             </FormItem>
                           )}
                         />
@@ -239,7 +327,7 @@ export function AccountForm() {
                     </div>
                   </AccordionContent>
                 </AccordionItem>
-                <AccordionItem value="item-2">
+                {/* <AccordionItem value="item-2">
                   <AccordionTrigger>
                     <div className="flex flex-row gap-4 items-center">
                       <div className="border-2 rounded-full p-2 flex items-center justify-center">
@@ -516,7 +604,7 @@ export function AccountForm() {
                       </div>
                     </div>
                   </AccordionContent>
-                </AccordionItem>
+                </AccordionItem> */}
               </Accordion>
             </div>
             <div className="flex flex-row gap-2 mt-4">

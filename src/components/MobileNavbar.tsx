@@ -2,6 +2,7 @@ import { useState } from "react";
 import Logo from "./Logo";
 import AuthButton from "./auth/AuthButton";
 import { ModeToggle } from "./theme/ThemeSwitcher";
+import Profile from "./Profile";
 
 const MobileNavbar = () => {
   return (
@@ -12,7 +13,8 @@ const MobileNavbar = () => {
             <Logo />
             <div className="md:hidden flex flex-row gap-1 items-center">
               <ModeToggle />
-              <AuthButton />
+              {/* <AuthButton /> */}
+              <Profile />
             </div>
           </div>
         </div>

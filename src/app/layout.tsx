@@ -8,6 +8,7 @@ import MobileNavbar from "@/components/MobileNavbar";
 import Footer from "@/components/Footer";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import SwitchNavBar from "@/components/SwitchNavBar";
+import QueryProvider from "@/components/QueryProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,21 +25,23 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={cn(inter.className)}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <div className="flex flex-col min-h-screen max-h-screen justify-between">
-            {/* <MobileNavbar /> */}
-            {/* <Navbar /> */}
-            <SwitchNavBar />
-            {children}
-            <Footer />
-          </div>
-          <Toaster richColors position="top-center" />
-        </ThemeProvider>
+        <QueryProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <div className="flex flex-col min-h-screen max-h-screen justify-between">
+              {/* <MobileNavbar /> */}
+              {/* <Navbar /> */}
+              <SwitchNavBar />
+              {children}
+              <Footer />
+            </div>
+            <Toaster richColors position="top-center" />
+          </ThemeProvider>
+        </QueryProvider>
       </body>
     </html>
   );

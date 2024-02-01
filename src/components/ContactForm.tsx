@@ -10,11 +10,11 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { ContactFormSchema, TContactFormSchema } from "@/lib/types";
+import { ContactFormSchema, TContactFormSchema } from "@/lib/types-auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { submitToSupabase } from "../app/auth/actions/SubmitProfile";
+import { submitToSupabase } from "../app/auth/actions/submit-profile";
 
 export default function ContactForm() {
   const form = useForm<TContactFormSchema>({
