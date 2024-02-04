@@ -4,7 +4,9 @@ export const AccountSetupFormSchema = z.object({
   fullname: z
     .string()
     .min(2, "İsim en az 2 karakter içermelidir")
-    .max(100, { message: "İsim en fazla 100 karaktere sahip olabilir." }),
+    .max(100, { message: "İsim en fazla 100 karaktere sahip olabilir." })
+    .optional()
+    .or(z.literal("")),
   nickname: z
     .string()
     .min(3, { message: "Kullanıcı adı en az 3 karaktere sahip olmalıdır." })
@@ -21,7 +23,7 @@ export const AccountSetupFormSchema = z.object({
     .email()
     .min(2, { message: "Lütfen uygun bir e-posta adresi giriniz." })
     .max(120, { message: "Email en fazla 120 karaktere sahip olmalıdır." }),
-  grade: z.string(),
+  grade: z.string().transform((v) => Number(v) || 0),
   avatar_url: z.string().url(),
 });
 

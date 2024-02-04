@@ -1,4 +1,5 @@
 import FAQ from "@/components/FAQ";
+import { fetchFromSupabase } from "@/lib/fetch-profile";
 import Image from "next/image";
 
 export default function Home() {

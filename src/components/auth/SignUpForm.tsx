@@ -1,23 +1,20 @@
 "use client";
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import * as z from "zod";
+import { signUp } from "@/app/auth/actions/sign-up";
 import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { signUp } from "@/app/auth/actions/sign-up";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
 import { Toaster } from "../ui/sonner";
-import GoogleOAuth from "./GoogleOAuthForm";
-import GithubOAuth from "./GithubOAuthForm";
 
 const formSchema1 = z
   .object({
@@ -59,13 +56,6 @@ export function SignUpForm() {
             name="emailAddress"
             render={({ field }) => (
               <FormItem className="grid gap-2">
-                <div className="grid grid-flow-col justify-center space-x-2 w-full">
-                  <GoogleOAuth />
-                  <GithubOAuth />
-                </div>
-                <div className="mx-auto flex w-full items-center justify-evenly before:mr-4 before:block before:h-px before:flex-grow before:bg-stone-400 after:ml-4 after:block after:h-px after:flex-grow after:bg-stone-400">
-                  OR
-                </div>
                 <FormLabel className="">Email</FormLabel>
                 <FormControl>
                   <Input

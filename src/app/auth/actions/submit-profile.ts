@@ -4,18 +4,18 @@ import { cookies } from "next/headers";
 
 // Function to submit data to Supabase
 export const submitToSupabase = async (
-  fullname: string,
+  fullname: string | undefined,
   nickname: string,
   birthday: string,
   school: string,
   email: string,
-  grade: string,
+  grade: number,
   avatar_url: string
 ) => {
   "use server";
   const cookieStore = cookies();
   const supabase = createClient(cookieStore);
-  console.log(fullname);
+  // console.log(fullname);
 
   const { data } = await supabase.auth.getSession();
 

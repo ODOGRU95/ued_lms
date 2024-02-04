@@ -51,6 +51,8 @@ import { AiOutlineMail } from "react-icons/ai";
 import { GiFeather } from "react-icons/gi";
 import { IoIosPerson } from "react-icons/io";
 import { FaUserSecret } from "react-icons/fa6";
+import { Switch } from "./ui/switch";
+import { fetchFromSupabase } from "@/lib/fetch-profile";
 
 async function onSubmit(data: TAccountSetupFormSchema) {
   const result = await submitToSupabase(
@@ -66,20 +68,21 @@ async function onSubmit(data: TAccountSetupFormSchema) {
     toast.error("Data submission failed");
   } else {
     toast.success("Data submitted succesfully");
-    console.log(data);
+    // console.log(data);
   }
 }
 
-export function AccountForm() {
+export function AccountForm(fetchFn: any) {
   const form = useForm<TAccountSetupFormSchema>({
     resolver: zodResolver(AccountSetupFormSchema),
     defaultValues: {
-      fullname: "",
-      nickname: "",
-      birthday: "",
-      school: "",
-      email: "",
-      avatar_url: "",
+      fullname: fetchFn.fullname,
+      nickname: fetchFn.nickname,
+      birthday: fetchFn.birthday,
+      school: fetchFn.school,
+      grade: fetchFn.grade,
+      email: fetchFn.email,
+      avatar_url: fetchFn.avatar_url,
     },
   });
 
@@ -250,7 +253,7 @@ export function AccountForm() {
                               <FormControl>
                                 <div className="flex flex-row w-full items-center justify-start gap-5">
                                   <div className="flex flex-row items-center gap-3 w-full">
-                                    <GraduationCap className="h-5 w-5 text-gray-400" />
+                                    <FaBook className="h-5 w-5 text-gray-400" />
                                     <p className="font-normal text-foreground/70">
                                       Grade
                                     </p>
