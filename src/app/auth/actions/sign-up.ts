@@ -21,6 +21,7 @@ export const signUp = async (email: string, password: string) => {
   });
 
   if (error) {
+    console.log(error);
     return redirect("/");
   }
 

@@ -53,6 +53,7 @@ import { IoIosPerson } from "react-icons/io";
 import { FaUserSecret } from "react-icons/fa6";
 import { Switch } from "./ui/switch";
 import { fetchFromSupabase } from "@/lib/fetch-profile";
+import Link from "next/link";
 
 async function onSubmit(data: TAccountSetupFormSchema) {
   const result = await submitToSupabase(
@@ -73,6 +74,9 @@ async function onSubmit(data: TAccountSetupFormSchema) {
 }
 
 export function AccountForm(fetchFn: any) {
+  // const grades = [9, 10, 11, 12];
+  // console.log(typeof grades[0].toString());
+
   const form = useForm<TAccountSetupFormSchema>({
     resolver: zodResolver(AccountSetupFormSchema),
     defaultValues: {
@@ -250,24 +254,47 @@ export function AccountForm(fetchFn: any) {
                           name="grade"
                           render={({ field }) => (
                             <FormItem>
-                              <FormControl>
-                                <div className="flex flex-row w-full items-center justify-start gap-5">
-                                  <div className="flex flex-row items-center gap-3 w-full">
-                                    <FaBook className="h-5 w-5 text-gray-400" />
-                                    <p className="font-normal text-foreground/70">
-                                      Grade
-                                    </p>
-                                  </div>
-                                  <Input
+                              <div className="flex flex-row w-full items-center justify-start gap-5">
+                                <div className="flex flex-row items-center gap-3 w-full">
+                                  <FaBook className="h-5 w-5 text-gray-400" />
+                                  <p className="font-normal text-foreground/70">
+                                    Grade
+                                  </p>
+                                </div>
+                                <FormControl>
+                                  <Select
+                                    onValueChange={field.onChange}
+                                    defaultValue={field.value}
+                                  >
+                                    <SelectTrigger className="w-full ">
+                                      <SelectValue placeholder="Select a grade" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                      <SelectItem value="9">
+                                        9th Grade
+                                      </SelectItem>
+                                      <SelectItem value="10">
+                                        10th Grade
+                                      </SelectItem>
+                                      <SelectItem value="11">
+                                        11th Grade
+                                      </SelectItem>
+                                      <SelectItem value="12">
+                                        12th Grade
+                                      </SelectItem>
+                                    </SelectContent>
+                                  </Select>
+                                </FormControl>
+
+                                {/* <Input
                                     className="h-8"
                                     placeholder=""
                                     type="text"
                                     autoCapitalize=""
                                     autoCorrect="off"
                                     {...field}
-                                  />
-                                </div>
-                              </FormControl>
+                                  /> */}
+                              </div>
                               <FormMessage className="mt-2" />
                             </FormItem>
                           )}
@@ -612,13 +639,15 @@ export function AccountForm(fetchFn: any) {
             </div>
             <div className="flex flex-row gap-2 mt-4">
               <div className="basis-1/2">
-                <Button
-                  variant={"basic"}
-                  type="submit"
-                  className="text-md w-full  "
-                >
-                  Skip
-                </Button>
+                <Link href={"/"}>
+                  <Button
+                    variant={"basic"}
+                    type="submit"
+                    className="text-md w-full  "
+                  >
+                    Skip
+                  </Button>
+                </Link>
               </div>
               <div className="basis-1/2">
                 <Button

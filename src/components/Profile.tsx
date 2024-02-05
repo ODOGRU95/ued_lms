@@ -17,7 +17,16 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { CreditCard, Home, LayoutDashboard, LogOut, User } from "lucide-react";
+import {
+  CreditCard,
+  Home,
+  LayoutDashboard,
+  LoaderIcon,
+  LogOut,
+  User,
+} from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { RxAvatar } from "react-icons/rx";
 
 export default function Profile() {
   const { isFetching, data } = useUser();
@@ -27,7 +36,13 @@ export default function Profile() {
   const pathname = usePathname();
 
   if (isFetching) {
-    return <></>;
+    return (
+      <>
+        <div className="animate-spin ">
+          <LoaderIcon />
+        </div>
+      </>
+    );
   }
 
   const handleLogout = async () => {
@@ -36,7 +51,8 @@ export default function Profile() {
     await supabase.auth.signOut();
     router.refresh();
     if (protectedPaths.includes(pathname)) {
-      router.replace("/auth?next=" + pathname);
+      router.replace("/");
+      // router.replace("/auth?next=" + pathname);
     }
   };
 
@@ -60,7 +76,17 @@ export default function Profile() {
                 />
               ) : (
                 <div className="h-[50px] w-[50px] flex items-center justify-center rounded-full text-2xl font-bold cursor-pointer">
-                  <h1>{data.email[0]}</h1>
+                  <div>
+                    <Avatar className="h-9 w-9 flex items-center justify-center">
+                      <AvatarImage
+                        src="https://github.com/shadcn.png"
+                        alt="@shadcn"
+                      />
+                      <AvatarFallback>
+                        <RxAvatar className="h-9 w-9" />
+                      </AvatarFallback>
+                    </Avatar>
+                  </div>
                 </div>
               )}
             </>

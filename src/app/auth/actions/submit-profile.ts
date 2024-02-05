@@ -9,7 +9,7 @@ export const submitToSupabase = async (
   birthday: string,
   school: string,
   email: string,
-  grade: number,
+  grade: string,
   avatar_url: string
 ) => {
   "use server";
