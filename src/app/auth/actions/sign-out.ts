@@ -3,6 +3,7 @@ import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { Router } from "next/router";
+import { toast } from "sonner";
 
 export const signOut = async () => {
   "use server";

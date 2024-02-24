@@ -20,10 +20,23 @@ export default function GoogleOAuth() {
   };
 
   return (
-    <Button
-      variant={"ghost"}
+    // <Button
+    //   variant={"ghost"}
+    //   onClick={loginWithGoogle}
+    //   className="border border-zinc-700 flex items-center justify-center gap-1"
+    // >
+    //   <Image
+    //     alt="google-logo"
+    //     src={"/google-logo.svg"}
+    //     width={40}
+    //     height={40}
+    //   />
+    //   Sign in with Google
+    // </Button>
+
+    <button
       onClick={loginWithGoogle}
-      className="border border-zinc-700 flex items-center justify-center gap-1"
+      className="shadow-[0_0_0_1px_#000000_inset] px-6 py-2 bg-transparent border border-zinc-700 dark:border-white dark:text-white text-black rounded-lg font-normal transform hover:-translate-y-1 transition duration-400 flex items-center justify-center"
     >
       <Image
         alt="google-logo"
@@ -32,6 +45,6 @@ export default function GoogleOAuth() {
         height={40}
       />
       Sign in with Google
-    </Button>
+    </button>
   );
 }

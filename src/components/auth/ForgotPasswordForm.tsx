@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
-import { signIn } from "@/app/auth/actions/sign-in";
+import { forgotPassword } from "@/app/auth/actions/forgot-password";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -16,36 +16,27 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
-import GithubOAuth from "./GithubOAuthForm";
-import GoogleOAuth from "./GoogleOAuthForm";
-import Link from "next/link";
-import { useState } from "react";
 
 const formSchema = z.object({
   emailAddress: z.string().email({
     message: "It must be a valid email.",
   }),
-  password: z.string().min(6, {
-    message: "Password must be at least 6 characters.",
-  }),
 });
 
 async function onSubmit(values: z.infer<typeof formSchema>) {
-  const result = await signIn(values.emailAddress, values.password);
+  const result = await forgotPassword(values.emailAddress);
   if (result?.error) {
-    toast.error("Make sure your email and password are correct");
+    toast.error("Make sure your email is correct");
   } else {
-    toast.success("Successfully logged in");
+    toast.success("Password reset link has been sent to your email address");
   }
 }
 
-export function LoginForm() {
-  // ...
+export function ForgotPasswordForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       emailAddress: "",
-      password: "",
     },
   });
 
@@ -73,33 +64,7 @@ export function LoginForm() {
             </FormItem>
           )}
         />
-        <FormField
-          control={form.control}
-          name="password"
-          render={({ field }) => (
-            <FormItem className="grid gap-2">
-              <FormLabel className="flex items-center justify-between">
-                <p>Password</p>
-                <Link
-                  href={"/forgot-password"}
-                  className="hover:underline font-normal flex justify-end"
-                >
-                  Forgot Password?
-                </Link>
-              </FormLabel>
-              <FormControl>
-                <Input
-                  className=""
-                  type="password"
-                  autoCapitalize="none"
-                  autoCorrect="off"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+
         <Button
           type="submit"
           variant={"default"}
@@ -115,7 +80,7 @@ export function LoginForm() {
         hover:text-slate-400
     `}
         >
-          Sign In
+          Send Reset Email
         </Button>
       </form>
     </Form>

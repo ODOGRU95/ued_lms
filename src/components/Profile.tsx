@@ -1,14 +1,10 @@
-"use client";
-import React from "react";
-import { Button } from "./ui/button";
-import Link from "next/link";
-import useUser from "@/app/hook/useUser";
 import Image from "next/image";
-import { supabaseBrowser } from "@/lib/supabase/browser";
-import { useQueryClient } from "@tanstack/react-query";
-import { usePathname, useRouter } from "next/navigation";
-import { protectedPaths } from "@/lib/constant";
+import Link from "next/link";
+import { redirect } from "next/navigation";
+import { Button } from "./ui/button";
 
+import { signOut } from "@/app/auth/actions/sign-out";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -17,80 +13,55 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import {
-  CreditCard,
-  Home,
-  LayoutDashboard,
-  LoaderIcon,
-  LogOut,
-  User,
-} from "lucide-react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { fetchFromSupabase } from "@/lib/fetch-profile";
+import { CreditCard, Home, LayoutDashboard, LogOut, User } from "lucide-react";
 import { RxAvatar } from "react-icons/rx";
+import DrawOutlineBtn from "./DrawOutlineButton";
 
-export default function Profile() {
-  const { isFetching, data } = useUser();
-  const queryClient = useQueryClient();
-  const router = useRouter();
+export default async function Profile() {
+  const fetchFn = await fetchFromSupabase();
 
-  const pathname = usePathname();
-
-  if (isFetching) {
-    return (
-      <>
-        <div className="animate-spin ">
-          <LoaderIcon />
-        </div>
-      </>
-    );
-  }
-
-  const handleLogout = async () => {
-    const supabase = supabaseBrowser();
-    queryClient.clear();
-    await supabase.auth.signOut();
-    router.refresh();
-    if (protectedPaths.includes(pathname)) {
-      router.replace("/");
-      // router.replace("/auth?next=" + pathname);
-    }
+  const signOutFnc = async () => {
+    "use server";
+    await signOut();
+    return redirect("/auth");
   };
 
   return (
     <div>
-      {!data?.id ? (
+      {!fetchFn?.id ? (
         <Link href="/auth" className=" animate-fade">
-          <Button variant="default">Sign In</Button>
+          {/* <Button variant="default">Sign In</Button> */}
+          <DrawOutlineBtn />
         </Link>
       ) : (
         <DropdownMenu>
-          <DropdownMenuTrigger>
-            <>
-              {data?.avatar_url ? (
-                <Image
-                  src={data.avatar_url || ""}
-                  alt={data.nickname || ""}
-                  width={40}
-                  height={40}
-                  className=" rounded-full  animate-fade cursor-pointer"
-                />
-              ) : (
-                <div className="h-[50px] w-[50px] flex items-center justify-center rounded-full text-2xl font-bold cursor-pointer">
-                  <div>
-                    <Avatar className="h-9 w-9 flex items-center justify-center">
-                      <AvatarImage
-                        src="https://github.com/shadcn.png"
-                        alt="@shadcn"
-                      />
-                      <AvatarFallback>
-                        <RxAvatar className="h-9 w-9" />
-                      </AvatarFallback>
-                    </Avatar>
-                  </div>
+          <DropdownMenuTrigger asChild>
+            {fetchFn?.avatar_url ? (
+              <Image
+                src={fetchFn?.avatar_url || ""}
+                alt={fetchFn?.nickname || ""}
+                width={30}
+                height={30}
+                className="rounded-full cursor-pointer"
+              />
+            ) : (
+              <div className="flex items-center justify-center rounded-full  cursor-pointer">
+                <div>
+                  <Avatar className="h-10 w-10 flex items-center justify-center">
+                    <AvatarImage
+                      src="https://github.com/shadcn.png"
+                      alt="@shadcn"
+                    />
+                    <AvatarFallback>
+                      <RxAvatar className="h-10 w-10" />
+                    </AvatarFallback>
+                  </Avatar>
                 </div>
-              )}
-            </>
+              </div>
+            )}
           </DropdownMenuTrigger>
+
           <DropdownMenuContent className="mr-3 mt-5">
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
@@ -110,9 +81,13 @@ export default function Profile() {
               <CreditCard className="h-4 w-4" />
               <Link href={"/pricing"}>Pricing</Link>
             </DropdownMenuItem>
-            <DropdownMenuItem className="gap-2" onClick={handleLogout}>
-              <LogOut className="h-4 w-4" />
-              Sign out
+            <DropdownMenuItem className="gap-2">
+              <form action={signOutFnc}>
+                <button className="flex gap-2">
+                  <LogOut className="h-4 w-4" />
+                  Sign Out
+                </button>
+              </form>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

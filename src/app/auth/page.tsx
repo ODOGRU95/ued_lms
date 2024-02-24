@@ -26,7 +26,7 @@ export default function Login() {
   return (
     <div className="h-screen flex justify-center items-center">
       <div>
-        <Link
+        {/* <Link
           href="/"
           className="absolute left-8 top-24 py-2 pr-2 no-underline flex items-center group text-sm border rounded-lg"
         >
@@ -34,7 +34,7 @@ export default function Login() {
             <ChevronLeft />
             <div className="font-bold">Back</div>
           </div>
-        </Link>
+        </Link> */}
         <Tabs defaultValue="signIn" className="max-w-lg">
           <TabsList className="grid grid-cols-2">
             <TabsTrigger value="signIn">Sign In</TabsTrigger>
@@ -65,9 +65,9 @@ export default function Login() {
                 </div>
                 <LoginForm />
               </CardContent>
-              <CardFooter>
+              <CardFooter className="flex items-center justify-center">
                 <p className="px-8 text-center text-sm ">
-                  By clicking continue, you agree to our{" "}
+                  By clicking continue, you agree to our <br />
                   <Link
                     href="/terms"
                     className="underline underline-offset-4 font-bold"
@@ -98,16 +98,23 @@ export default function Login() {
                 />
                 <CardTitle>Welcome Back</CardTitle>
                 <CardDescription className="">
-                  Please enter your details to sign up
+                  Please fill the required fields in order to sign up
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-2">
+                <div className="grid grid-flow-col justify-center space-x-2 w-full">
+                  <GoogleOAuth />
+                  <GithubOAuth />
+                </div>
+                <div className="mx-auto flex w-full items-center justify-evenly before:mr-4 before:block before:h-px before:flex-grow before:bg-stone-400 after:ml-4 after:block after:h-px after:flex-grow after:bg-stone-400">
+                  OR
+                </div>
                 <SignUpForm />
               </CardContent>
 
-              <CardFooter>
+              <CardFooter className="flex items-center justify-center">
                 <p className="px-8 text-center text-sm ">
-                  By clicking continue, you agree to our{" "}
+                  By clicking continue, you agree to our <br />
                   <Link
                     href="/terms"
                     className="underline underline-offset-4 font-bold"

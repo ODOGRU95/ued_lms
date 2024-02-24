@@ -24,7 +24,7 @@ export const AccountSetupFormSchema = z.object({
     .min(2, { message: "Lütfen uygun bir e-posta adresi giriniz." })
     .max(120, { message: "Email en fazla 120 karaktere sahip olmalıdır." }),
   grade: z.string(),
-  avatar_url: z.string().url(),
+  avatar_url: z.string().url().optional().or(z.literal("")),
 });
 
 export type TAccountSetupFormSchema = z.infer<typeof AccountSetupFormSchema>;

@@ -34,6 +34,7 @@ import {
   AccountSetupFormSchema,
   TAccountSetupFormSchema,
 } from "@/lib/types-account-setup";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Cake, GraduationCap, Mail, User } from "lucide-react";
 import { useForm } from "react-hook-form";
@@ -74,9 +75,6 @@ async function onSubmit(data: TAccountSetupFormSchema) {
 }
 
 export function AccountForm(fetchFn: any) {
-  // const grades = [9, 10, 11, 12];
-  // console.log(typeof grades[0].toString());
-
   const form = useForm<TAccountSetupFormSchema>({
     resolver: zodResolver(AccountSetupFormSchema),
     defaultValues: {
@@ -86,7 +84,6 @@ export function AccountForm(fetchFn: any) {
       school: fetchFn.school,
       grade: fetchFn.grade,
       email: fetchFn.email,
-      avatar_url: fetchFn.avatar_url,
     },
   });
 
@@ -211,7 +208,8 @@ export function AccountForm(fetchFn: any) {
                                   <Input
                                     className="h-8"
                                     placeholder=""
-                                    type="text"
+                                    type="date"
+                                    data-date-format="DD MMMM YYYY"
                                     autoCapitalize=""
                                     autoCorrect="off"
                                     {...field}
@@ -254,12 +252,10 @@ export function AccountForm(fetchFn: any) {
                           name="grade"
                           render={({ field }) => (
                             <FormItem>
-                              <div className="flex flex-row w-full items-center justify-start gap-5">
+                              <div className="flex flex-row w-full items-center font-lg justify-start gap-5">
                                 <div className="flex flex-row items-center gap-3 w-full">
                                   <FaBook className="h-5 w-5 text-gray-400" />
-                                  <p className="font-normal text-foreground/70">
-                                    Grade
-                                  </p>
+                                  <p className="text-foreground/70">Grade</p>
                                 </div>
                                 <FormControl>
                                   <Select
@@ -285,15 +281,6 @@ export function AccountForm(fetchFn: any) {
                                     </SelectContent>
                                   </Select>
                                 </FormControl>
-
-                                {/* <Input
-                                    className="h-8"
-                                    placeholder=""
-                                    type="text"
-                                    autoCapitalize=""
-                                    autoCorrect="off"
-                                    {...field}
-                                  /> */}
                               </div>
                               <FormMessage className="mt-2" />
                             </FormItem>

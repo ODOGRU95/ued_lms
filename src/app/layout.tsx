@@ -24,24 +24,22 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={cn(inter.className)}>
-        <QueryProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <div className="flex flex-col min-h-screen max-h-screen justify-between">
-              {/* <MobileNavbar /> */}
-              {/* <Navbar /> */}
-              <SwitchNavBar />
-              {children}
-              <Footer />
-            </div>
-            <Toaster richColors position="top-center" />
-          </ThemeProvider>
-        </QueryProvider>
+      <body className={(cn(inter.className), "bg-background")}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div className="flex flex-col min-h-screen max-h-screen justify-between">
+            {/* <MobileNavbar /> */}
+            {/* <Navbar /> */}
+            <SwitchNavBar />
+            {children}
+            <Footer />
+          </div>
+          <Toaster richColors position="top-center" />
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -10,7 +10,7 @@ export const submitToSupabase = async (
   school: string,
   email: string,
   grade: string,
-  avatar_url: string
+  avatar_url: string | undefined
 ) => {
   "use server";
   const cookieStore = cookies();
