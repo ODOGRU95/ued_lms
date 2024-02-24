@@ -7,7 +7,7 @@ export const signIn = async (email: string, password: string) => {
   "use server";
 
   const cookieStore = cookies();
-  const supabase = createClient(cookieStore);
+  const supabase = createClient();
 
   const { error } = await supabase.auth.signInWithPassword({
     email,

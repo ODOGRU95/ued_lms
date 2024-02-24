@@ -12,7 +12,7 @@ const signOutFnc = async () => {
 
 export default async function DashboardPage() {
   const cookieStore = cookies();
-  const supabase = createClient(cookieStore);
+  const supabase = createClient();
 
   const {
     data: { session },

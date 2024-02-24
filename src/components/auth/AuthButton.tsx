@@ -26,7 +26,7 @@ import { Home } from "lucide-react";
 
 export default async function AuthButton() {
   const cookieStore = cookies();
-  const supabase = createClient(cookieStore);
+  const supabase = createClient();
 
   const {
     data: { user },

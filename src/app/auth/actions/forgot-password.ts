@@ -9,7 +9,7 @@ export const forgotPassword = async (email: string) => {
   const origin = headers().get("origin");
 
   const cookieStore = cookies();
-  const supabase = createClient(cookieStore);
+  const supabase = createClient();
 
   const { error } = await supabase.auth.resetPasswordForEmail(email, {
     redirectTo: `${origin}/reset-password`,

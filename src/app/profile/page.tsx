@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 
 export default async function ProfilePage() {
   const cookieStore = cookies();
-  const supabase = createClient(cookieStore);
+  const supabase = createClient();
 
   ///profile girildikten sonra auth sayfasından sonra profile page'e yönlendirsin
   const fetchFn = await fetchFromSupabase();

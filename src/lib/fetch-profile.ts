@@ -6,7 +6,7 @@ import { cookies } from "next/headers";
 export const fetchFromSupabase = async () => {
   "use server";
   const cookieStore = cookies();
-  const supabase = createClient(cookieStore);
+  const supabase = createClient();
   //   console.log(fullname);
 
   const { data } = await supabase.auth.getSession();

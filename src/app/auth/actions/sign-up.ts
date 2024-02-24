@@ -10,7 +10,7 @@ export const signUp = async (email: string, password: string) => {
   const origin = headers().get("origin");
 
   const cookieStore = cookies();
-  const supabase = createClient(cookieStore);
+  const supabase = createClient();
 
   const { error } = await supabase.auth.signUp({
     email,

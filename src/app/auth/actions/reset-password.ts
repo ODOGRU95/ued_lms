@@ -43,7 +43,7 @@ export const resetPassword = async (
   "use server";
 
   const cookieStore = cookies();
-  const supabase = createClient(cookieStore);
+  const supabase = createClient();
 
   // if (searchParams.code) {
   //   const { error } = await supabase.auth.exchangeCodeForSession(

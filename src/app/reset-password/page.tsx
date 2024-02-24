@@ -10,6 +10,7 @@
 //   );
 // }
 
+import { Button } from "@/components/ui/button";
 import { createClient } from "@/lib/supabase/server";
 import { cookies } from "next/headers";
 import Link from "next/link";
@@ -20,8 +21,8 @@ export default async function ResetPassword({
 }: {
   searchParams: { message: string; code: string };
 }) {
-  const cookieStore = cookies();
-  const supabase = createClient(cookieStore);
+  // const cookieStore = cookies();
+  const supabase = createClient();
 
   const {
     data: { session },
@@ -35,10 +36,10 @@ export default async function ResetPassword({
     "use server";
 
     const password = formData.get("password") as string;
-    const supabase = createClient(cookieStore);
+    const supabase = createClient();
 
     if (searchParams.code) {
-      const supabase = createClient(cookieStore);
+      const supabase = createClient();
 
       const { error } = await supabase.auth.exchangeCodeForSession(
         searchParams.code
@@ -69,13 +70,6 @@ export default async function ResetPassword({
 
   return (
     <div>
-      <Link
-        href="/"
-        className="py-2 px-4 rounded-md no-underline text-foreground bg-btn-background hover:bg-btn-background-hover text-sm m-4"
-      >
-        Home
-      </Link>
-
       <div className="w-full px-8 sm:max-w-md mx-auto mt-4">
         <form
           className="animate-in flex-1 flex flex-col w-full justify-center gap-2 text-foreground mb-4"
@@ -101,9 +95,9 @@ export default async function ResetPassword({
             placeholder="••••••••"
             required
           />
-          <button className="bg-indigo-700 rounded-md px-4 py-2 text-foreground mb-2">
-            Reset
-          </button>
+          <Button type="submit" className="w-full mt-2">
+            Reset Password
+          </Button>
 
           {searchParams?.message && (
             <p className="mt-4 p-4 bg-foreground/10 text-foreground text-center">

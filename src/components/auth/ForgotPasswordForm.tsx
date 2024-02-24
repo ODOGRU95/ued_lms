@@ -65,21 +65,7 @@ export function ForgotPasswordForm() {
           )}
         />
 
-        <Button
-          type="submit"
-          variant={"default"}
-          className={`
-        px-4 py-2 rounded-full 
-        flex items-center gap-2 
-        text-white
-        shadow-[-1px_-1px_5px_rgba(255,_255,220,_0.8),_5px_5px_10px_rgba(0,_0,_0,_0.45)]
-        
-        transition-all
-
-        hover:shadow-[-1px_-1px_5px_rgba(255,_255,_255,_0.6),_1px_1px_5px_rgba(0,_0,_0,_0.3),inset_-2px_-2px_5px_rgba(255,_255,_255,_1),inset_2px_2px_4px_rgba(0,_0,_0,_0.3)]
-        hover:text-slate-400
-    `}
-        >
+        <Button type="submit" className="w-full mt-2">
           Send Reset Email
         </Button>
       </form>

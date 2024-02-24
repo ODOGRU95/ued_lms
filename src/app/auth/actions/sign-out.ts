@@ -9,7 +9,7 @@ export const signOut = async () => {
   "use server";
 
   const cookieStore = cookies();
-  const supabase = createClient(cookieStore);
+  const supabase = createClient();
   await supabase.auth.signOut();
   // revalidatePath(window.location.origin);
 };
