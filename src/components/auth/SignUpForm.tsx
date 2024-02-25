@@ -15,6 +15,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { Toaster } from "../ui/sonner";
+import { useState } from "react";
+import { EyeIcon, EyeOffIcon } from "lucide-react";
 
 const formSchema1 = z
   .object({
@@ -38,7 +40,11 @@ function onSubmit(values: z.infer<typeof formSchema1>) {
 }
 
 export function SignUpForm() {
-  // ...
+  const [showPassword, setShowPassword] = useState<Boolean>(false);
+
+  const toggleShowPassword = () => {
+    setShowPassword(showPassword ? false : true);
+  };
   const form = useForm<z.infer<typeof formSchema1>>({
     resolver: zodResolver(formSchema1),
     defaultValues: {
@@ -55,7 +61,7 @@ export function SignUpForm() {
             control={form.control}
             name="emailAddress"
             render={({ field }) => (
-              <FormItem className="grid gap-2">
+              <FormItem className="grid gap-4">
                 <FormLabel className="">Email</FormLabel>
                 <FormControl>
                   <Input
@@ -76,16 +82,31 @@ export function SignUpForm() {
             control={form.control}
             name="password"
             render={({ field }) => (
-              <FormItem className="grid gap-2">
+              <FormItem className="grid gap-4">
                 <FormLabel className="">Password</FormLabel>
                 <FormControl>
-                  <Input
-                    className=""
-                    type="password"
-                    autoCapitalize="none"
-                    autoCorrect="off"
-                    {...field}
-                  />
+                  <div className="relative flex items-center ">
+                    <div className="w-full">
+                      <Input
+                        className="pr-12"
+                        type={showPassword ? "text" : "password"}
+                        autoCapitalize="none"
+                        autoCorrect="off"
+                        {...field}
+                      />
+                    </div>
+                    {showPassword ? (
+                      <EyeIcon
+                        className="absolute right-3"
+                        onClick={() => setShowPassword(false)}
+                      />
+                    ) : (
+                      <EyeOffIcon
+                        className="absolute right-3 "
+                        onClick={() => setShowPassword(true)}
+                      />
+                    )}
+                  </div>
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -95,16 +116,31 @@ export function SignUpForm() {
             control={form.control}
             name="passwordConfirm"
             render={({ field }) => (
-              <FormItem className="grid gap-2">
+              <FormItem className="grid gap-4">
                 <FormLabel className="">Confirm Password</FormLabel>
                 <FormControl>
-                  <Input
-                    className=""
-                    type="password"
-                    autoCapitalize="none"
-                    autoCorrect="off"
-                    {...field}
-                  />
+                  <div className="relative flex items-center ">
+                    <div className="w-full">
+                      <Input
+                        className="pr-12"
+                        type={showPassword ? "text" : "password"}
+                        autoCapitalize="none"
+                        autoCorrect="off"
+                        {...field}
+                      />
+                    </div>
+                    {showPassword ? (
+                      <EyeIcon
+                        className="absolute right-3"
+                        onClick={() => setShowPassword(false)}
+                      />
+                    ) : (
+                      <EyeOffIcon
+                        className="absolute right-3 "
+                        onClick={() => setShowPassword(true)}
+                      />
+                    )}
+                  </div>
                 </FormControl>
                 <FormMessage />
               </FormItem>

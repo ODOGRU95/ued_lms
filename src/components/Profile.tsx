@@ -65,25 +65,32 @@ export default async function Profile() {
           <DropdownMenuContent className="mr-3 mt-5">
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="gap-2">
-              <Home className="h-4 w-4" />
-              <Link href={"/"}>Home</Link>
+            <DropdownMenuItem asChild className="gap-2 cursor-pointer">
+              <Link href={"/"}>
+                <Home className="h-4 w-4" /> Home
+              </Link>
             </DropdownMenuItem>
-            <DropdownMenuItem className="gap-2">
-              <User className="h-4 w-4" />
-              <Link href={"/profile"}>Profile</Link>
+            <DropdownMenuItem asChild className="gap-2 cursor-pointer">
+              <Link href={"/profile"}>
+                <User className="h-4 w-4" /> Profile
+              </Link>
             </DropdownMenuItem>
-            <DropdownMenuItem className="gap-2">
-              <LayoutDashboard className="h-4 w-4" />
-              <Link href={"/dashboard"}>Dashboard</Link>
+            <DropdownMenuItem asChild className="gap-2 cursor-pointer">
+              <Link href={"/dashboard"}>
+                <LayoutDashboard className="h-4 w-4" /> Dashboard
+              </Link>
             </DropdownMenuItem>
-            <DropdownMenuItem className="gap-2  transition-all">
-              <CreditCard className="h-4 w-4" />
-              <Link href={"/pricing"}>Pricing</Link>
+            <DropdownMenuItem
+              asChild
+              className="gap-2 cursor-pointer transition-all"
+            >
+              <Link href={"/pricing"}>
+                <CreditCard className="h-4 w-4" /> Pricing
+              </Link>
             </DropdownMenuItem>
-            <DropdownMenuItem className="gap-2">
+            <DropdownMenuItem asChild className="gap-2 cursor-pointer">
               <form action={signOutFnc}>
-                <button className="flex gap-2">
+                <button className="flex items-center gap-2">
                   <LogOut className="h-4 w-4" />
                   Sign Out
                 </button>

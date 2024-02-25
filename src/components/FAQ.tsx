@@ -14,23 +14,23 @@ export default function FAQ() {
         collapsible
         className="w-[25dvh] md:w-[50dvh] pt-5"
       >
-        <AccordionItem value="item-1">
+        <AccordionItem value="item-1" className="text-2xl">
           <AccordionTrigger>Ogret.io nedir?</AccordionTrigger>
-          <AccordionContent>
+          <AccordionContent className="text-lg">
             Ogret.io, Chat GPT-4&apos;ün gücünün yardımıyla müfredat derslerinin
             anlatımında yapay zekanın gücünü ortaya koyar.
           </AccordionContent>
         </AccordionItem>
-        <AccordionItem value="item-2">
+        <AccordionItem value="item-2" className="text-2xl">
           <AccordionTrigger>Kullanımı kolay mı?</AccordionTrigger>
-          <AccordionContent>
+          <AccordionContent className="text-lg">
             Kolay uygulama arayüzü sayesinde dilediğiniz dersi öğrenmeye
             başlayabilirsiniz.
           </AccordionContent>
         </AccordionItem>
-        <AccordionItem value="item-3">
+        <AccordionItem value="item-3" className="text-2xl">
           <AccordionTrigger>Ogret.io ücretsiz mi?</AccordionTrigger>
-          <AccordionContent>
+          <AccordionContent className="text-lg">
             Maalesef hayır. Fiyatlar sekmesinden uygulama ücretlerine göz
             atabilirsiniz.
           </AccordionContent>

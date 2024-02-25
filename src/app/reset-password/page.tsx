@@ -21,17 +21,6 @@ export default async function ResetPassword({
 }: {
   searchParams: { message: string; code: string };
 }) {
-  // const cookieStore = cookies();
-  const supabase = createClient();
-
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
-
-  if (session) {
-    return redirect("/");
-  }
-
   const resetPassword = async (formData: FormData) => {
     "use server";
 
@@ -39,8 +28,6 @@ export default async function ResetPassword({
     const supabase = createClient();
 
     if (searchParams.code) {
-      const supabase = createClient();
-
       const { error } = await supabase.auth.exchangeCodeForSession(
         searchParams.code
       );
@@ -64,32 +51,32 @@ export default async function ResetPassword({
     }
 
     redirect(
-      `/login?message=Your Password has been reset successfully. Sign in.`
+      `/auth?message=Your Password has been reset successfully. Sign in.`
     );
   };
 
   return (
     <div>
-      <div className="w-full px-8 sm:max-w-md mx-auto mt-4">
+      <div className="w-full sm:max-w-md mx-auto">
         <form
-          className="animate-in flex-1 flex flex-col w-full justify-center gap-2 text-foreground mb-4"
+          className="animate-in flex-1 flex flex-col w-full justify-center gap-2 text-foreground"
           action={resetPassword}
         >
-          <label className="text-md" htmlFor="password">
+          <label className="text-xl" htmlFor="password">
             New Password
           </label>
           <input
-            className="rounded-md px-4 py-2 bg-inherit border mb-6"
+            className="rounded-md px-4 py-2 bg-inherit border mb-4"
             type="password"
             name="password"
             placeholder="••••••••"
             required
           />
-          <label className="text-md" htmlFor="password">
+          <label className="text-xl" htmlFor="password">
             Confirm New Password
           </label>
           <input
-            className="rounded-md px-4 py-2 bg-inherit border mb-6"
+            className="rounded-md px-4 py-2 bg-inherit border mb-4"
             type="password"
             name="confirmPassword"
             placeholder="••••••••"

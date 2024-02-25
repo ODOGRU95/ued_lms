@@ -56,6 +56,9 @@ export const resetPassword = async (
   //   }
   // }
 
+  try {
+  } catch (error) {}
+
   const { error } = await supabase.auth.updateUser({
     password,
   });

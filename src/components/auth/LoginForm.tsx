@@ -20,6 +20,7 @@ import GithubOAuth from "./GithubOAuthForm";
 import GoogleOAuth from "./GoogleOAuthForm";
 import Link from "next/link";
 import { useState } from "react";
+import { Eye, EyeIcon, EyeOffIcon } from "lucide-react";
 
 const formSchema = z.object({
   emailAddress: z.string().email({
@@ -40,7 +41,12 @@ async function onSubmit(values: z.infer<typeof formSchema>) {
 }
 
 export function LoginForm() {
-  // ...
+  const [showPassword, setShowPassword] = useState<Boolean>(false);
+
+  // const toggleShowPassword = () => {
+  //   setShowPassword(showPassword ? false : true);
+  // };
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -77,7 +83,7 @@ export function LoginForm() {
           control={form.control}
           name="password"
           render={({ field }) => (
-            <FormItem className="grid gap-2">
+            <FormItem className="grid gap-4">
               <FormLabel className="flex items-center justify-between">
                 <p>Password</p>
                 <Link
@@ -88,33 +94,34 @@ export function LoginForm() {
                 </Link>
               </FormLabel>
               <FormControl>
-                <Input
-                  className=""
-                  type="password"
-                  autoCapitalize="none"
-                  autoCorrect="off"
-                  {...field}
-                />
+                <div className="relative flex items-center ">
+                  <div className="w-full">
+                    <Input
+                      className="pr-12"
+                      type={showPassword ? "text" : "password"}
+                      autoCapitalize="none"
+                      autoCorrect="off"
+                      {...field}
+                    />
+                  </div>
+                  {showPassword ? (
+                    <EyeIcon
+                      className="absolute right-3"
+                      onClick={() => setShowPassword(false)}
+                    />
+                  ) : (
+                    <EyeOffIcon
+                      className="absolute right-3 "
+                      onClick={() => setShowPassword(true)}
+                    />
+                  )}
+                </div>
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button
-          type="submit"
-          variant={"default"}
-          className={`
-        px-4 py-2 rounded-full 
-        flex items-center gap-2 
-        text-white
-        shadow-[-1px_-1px_5px_rgba(255,_255,220,_0.8),_5px_5px_10px_rgba(0,_0,_0,_0.45)]
-        
-        transition-all
-
-        hover:shadow-[-1px_-1px_5px_rgba(255,_255,_255,_0.6),_1px_1px_5px_rgba(0,_0,_0,_0.3),inset_-2px_-2px_5px_rgba(255,_255,_255,_1),inset_2px_2px_4px_rgba(0,_0,_0,_0.3)]
-        hover:text-slate-400
-    `}
-        >
+        <Button type="submit" className="w-full mt-2">
           Sign In
         </Button>
       </form>

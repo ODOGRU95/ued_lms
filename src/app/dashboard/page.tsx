@@ -3,6 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { signOut } from "../auth/actions/sign-out";
+import { decrypt } from "@/lib/decryption";
 
 const signOutFnc = async () => {
   "use server";

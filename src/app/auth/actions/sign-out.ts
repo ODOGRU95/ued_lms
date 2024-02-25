@@ -1,9 +1,5 @@
 import { createClient } from "@/lib/supabase/server";
-import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
-import { Router } from "next/router";
-import { toast } from "sonner";
 
 export const signOut = async () => {
   "use server";
@@ -11,5 +7,7 @@ export const signOut = async () => {
   const cookieStore = cookies();
   const supabase = createClient();
   await supabase.auth.signOut();
-  // revalidatePath(window.location.origin);
+
+  // Destroy the session
+  cookies().set("session", "", { expires: new Date(0) });
 };
